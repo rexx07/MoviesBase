@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <RootNamespace>Mb.Infrastructure</RootNamespace>
+        <AssemblyName>Mb.Infrastructure</AssemblyName>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+
+        <PackageReference Include="AutoMapper" Version="12.0.1"/>
+
+        <PackageReference Include="CsvHelper" Version="15.0.10"/>
+        <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="7.0.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1"/>
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Mb.Application\Mb.Application.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Persistence\Migrations"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,106 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<main class="content">
+
+  <section [style]="'background-image: url(' + 'https://image.tmdb.org/t/p/w1280' + movieContent?.backdrop_path + ');'"
+           class="content__main">
+
+    <div class="content__container">
+
+      <div class="content__info container">
+
+        <img [alt]="movieContent?.title"
+             appImgMissingDirective
+             data-loaded="true"
+             data-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movieContent?.poster_path}}"
+             data-srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movieContent?.poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{movieContent?.poster_path}} 2x"
+             src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movieContent?.poster_path}}"
+             srcset="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movieContent?.poster_path}} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{movieContent?.poster_path}} 2x">
+
+        <div class="content__data">
+
+          <h2>{{movieContent?.title ?? tvShowContent?.name}}
+            ({{movieContent?.release_date ?? tvShowContent?.first_air_date | date:'YYYY' }})</h2>
+          <h3>{{movieContent?.tagline}}</h3>
+
+          <h4>Overview</h4>
+          <p>{{movieContent?.overview}}</p>
+
+          <button (click)="openDialog()" *ngIf="video" aria-label="Trailer" class="play-trailer" color="primary"
+                  mat-raised-button>
+            <mat-icon>play_arrow</mat-icon>
+            Play Trailer
+          </button>
+
+          <h4>Categories</h4>
+
+          <div class="content__data--categories">
+            <button *ngFor="let genre of movieContent?.genres" aria-label="Genres" color="primary" disabled
+                    mat-raised-button>{{genre.name}}</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Mobile data  -->
+  <section class="content__data-mobile">
+    <h2>{{movieContent?.title ?? tvShowContent?.name}}
+      ({{movieContent?.release_date ?? tvShowContent?.first_air_date | date:'YYYY' }})</h2>
+    <h3>{{movieContent?.tagline}}</h3>
+
+    <h4>Overview</h4>
+    <p>{{movieContent?.overview}}</p>
+
+    <button (click)="openDialog()" *ngIf="video" aria-label="Trailer" class="play-trailer" color="primary"
+            mat-raised-button>
+      <mat-icon>play_arrow</mat-icon>
+      Play Trailer
+    </button>
+  </section>
+
+  <section class="content__recommendations container">
+
+    <h2>Recommended Movies</h2>
+
+    <div *ngIf="recommendedContentList.length > 0; else noRecommendedMovies" class="content__recommendations--cards">
+      <div *ngFor="let content of recommendedContentList;">
+        <app-poster-card [isMovie]="contentType === 'movies'" [model]="content"></app-poster-card>
+      </div>
+    </div>
+
+    <ng-template #noRecommendedMovies>
+      <div class="content__no-recommended">
+        <mat-icon [inline]="true">sentiment_dissatisfied</mat-icon>
+        <span>No recommended movies</span>
+      </div>
+    </ng-template>
+
+  </section>
+</main>
+
+<!--Dialogo video trailer-->
+<ng-template #matTrailerDialog>
+  <div cdkDrag cdkDragBoundary=".cdk-overlay-container" cdkDragRootElement=".cdk-overlay-pane"
+       style="background: black;">
+    <div cdkDragHandle class="dialog-title-container">
+      <a (click)="trailerDialog.closeAll()" href="javascript:void(0);">
+        <mat-icon aria-label="cerrar dialogo cambiar imagen Cabecera">close</mat-icon>
+      </a>
+      <h2 matDialogTitle>Play Trailer</h2>
+    </div>
+
+    <mat-dialog-content class="header-content-dialog">
+
+      <div *ngIf="video" class="video-movie-main">
+        <iframe [src]="video['url']" allowfullscreen></iframe>
+      </div>
+
+    </mat-dialog-content>
+
+  </div>
+</ng-template>

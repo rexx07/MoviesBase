@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <RootNamespace>Mb.Application</RootNamespace>
+        <AssemblyName>Mb.Application</AssemblyName>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.4.0"/>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Mb.Domain\Mb.Domain.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Genres\Command"/>
+        <Folder Include="Genres\Models"/>
+        <Folder Include="Genres\Queries"/>
+        <Folder Include="Members\Models"/>
+        <Folder Include="Members\Queries"/>
+    </ItemGroup>
+
+</Project>

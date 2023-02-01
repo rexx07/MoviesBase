@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <RootNamespace>Mb.WebApi</RootNamespace>
+        <AssemblyName>Mb.WebApi</AssemblyName>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="7.0.2"/>
+        <PackageReference Include="NSwag.AspNetCore" Version="13.18.2"/>
+        <PackageReference Include="NSwag.MSBuild" Version="13.18.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Mb.Application\Mb.Application.csproj"/>
+        <ProjectReference Include="..\Mb.Infrastructure\Mb.Infrastructure.csproj"/>
+    </ItemGroup>
+
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DocumentationFile>bin\Debug\Mb.WebApi.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DocumentationFile>bin\Release\Mb.WebApi.xml</DocumentationFile>
+    </PropertyGroup>
+
+
+</Project>

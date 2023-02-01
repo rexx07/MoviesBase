@@ -1,0 +1,24 @@
+<main class="contents container">
+
+  <h2>All {{contentType | titlecase}} #NowPlaying</h2>
+
+  <div class="contents__container">
+
+    <mat-card class="contents__filter">
+      <div>Filter by</div>
+      <button aria-label="Set Now Playing Filter" color="primary" disabled mat-raised-button>Now Playing</button>
+      <button aria-label="Set Upcoming filter" color="primary" disabled mat-raised-button>Upcoming</button>
+      <button aria-label="Set Popular filter" color="primary" disabled mat-raised-button>Popular</button>
+    </mat-card>
+
+    <div class="contents__right-side">
+
+      <div class="contents__list">
+        <app-poster-card *ngFor="let content of nowPlaying" [isMovie]="contentType === 'movies'" [model]="content">
+        </app-poster-card>
+      </div>
+
+      <mat-paginator (page)="changePage($event)" [length]="totalResults" [pageSize]="20"></mat-paginator>
+    </div>
+  </div>
+</main>

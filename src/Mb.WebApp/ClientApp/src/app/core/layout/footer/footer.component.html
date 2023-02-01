@@ -1,0 +1,8 @@
+<footer class="footer">
+  <div>Developed by <span class="footer__rexx">Rexx07</span></div>
+  <a *ngFor="let social of socialData" [attr.aria-label]="'Rexx07' + social.name" [href]="social.url"
+     [title]="social.name"
+     class="footer__social" rel="noopener noreferrer" target="_blank">
+    <img [alt]="'Movies Base' + social.name" [src]="social.img" loading="lazy">
+  </a>
+</footer>
